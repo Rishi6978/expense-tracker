@@ -1,0 +1,17 @@
+.paginatordownmenu{
+    width: 100%;
+}
+ ::ng-deep .mat-mdc-paginator-container {
+    justify-content: space-between !important;
+  }
+
+.div1{
+    color:rgba(0, 128, 0, 0.844);
+    background-color:#c81818 !important
+}
+.div2{
+    color:blue
+}
+::ng-deep .mat-mdc-paginator-container {
+    justify-content: space-between !important;
+  }
