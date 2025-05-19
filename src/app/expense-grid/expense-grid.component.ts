@@ -1,7 +1,7 @@
 import { Component, effect, inject, ViewChild, viewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { ExpenseService } from '../service/expense.service';
@@ -23,7 +23,7 @@ import { RouterLink } from '@angular/router';
 })
 export class ExpenseGridComponent {
   expenseService = inject(ExpenseService);
-  snackbar = inject(MatSnackBarModule);
+  snackbar = inject(MatSnackBar);
   displayedColumns: string[] = [
     'id',
     'title',
@@ -74,5 +74,26 @@ export class ExpenseGridComponent {
     this.dataSource.paginator = this.paginator;
   }
 
+
+
+onDelete(expenseId: number) {
+
+
+
+  if (confirm('Are you sure you want to delete this expense?')) {
+    this.expenseService.deleteExpense(expenseId);
+    this.snackbar.open('Expense deleted successfully', 'Close', {
+      duration: 2000,
+    });
+  } else {
+    // User clicked "Cancel", do nothing
+    this.snackbar.open('Expense not deleted ', 'Close', {
+      duration: 2000,})
+  }
+
+
+
+ 
+}
 
 }

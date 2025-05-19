@@ -13,7 +13,7 @@ export class ExpenseService {
 
   //get All expense
   getExpense() {
-    this.http.get<Expense[]>('http://localhost:3000/expenses')
+    this.http.get<Expense[]>('https://military-stripe-floss.glitch.me/expenses')
       .subscribe(expenses => this.expenseSignal.set(expenses));
   }
   get expenses() {
@@ -21,17 +21,17 @@ export class ExpenseService {
   }
   //Add expense
   addExpense(expense: Expense) {
-    this.http.post('http://localhost:3000/expenses', expense)
+    this.http.post('https://military-stripe-floss.glitch.me/expenses', expense)
       .subscribe(() => this.getExpense());
   }
   //Delete expense
   deleteExpense(id: number) {
-    this.http.delete(`http://localhost:3000/expenses/${id}`)
+    this.http.delete(`https://military-stripe-floss.glitch.me/expenses/${id}`)
       .subscribe(() => this.getExpense());
   }
   //Update expense
   updateExpense(id: string, updatedExpense: Expense) {
-    this.http.put(`http://localhost:3000/expenses/${id}`, updatedExpense)
+    this.http.put(`https://military-stripe-floss.glitch.me/expenses/${id}`, updatedExpense)
       .subscribe(() => this.getExpense());
   }
   //get expense by id

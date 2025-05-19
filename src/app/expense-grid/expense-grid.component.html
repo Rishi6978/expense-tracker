@@ -34,7 +34,7 @@
                 <th mat-header-cell *matHeaderCellDef> Actions </th>
                 <td mat-cell *matCellDef="let expense">
                     <button mat-flat-button  class="div1" color="primary" [routerLink]="['/edit', expense.id]">Edit</button>
-                    <button mat-flat-button class="div2" color="primary" [routerLink]="['/delete', expense.id]">Delete</button>
+                    <button mat-flat-button class="div2" color="primary" (click)="onDelete(expense.id)">Delete</button>
                  
                 </td>
             </ng-container>

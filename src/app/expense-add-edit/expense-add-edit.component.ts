@@ -10,8 +10,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { ExpenseService } from '../service/expense.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Expense } from '../model/expense.model';
+
 
 @Component({
   selector: 'app-expense-add-edit',
@@ -42,13 +43,12 @@ export class ExpenseAddEditComponent {
   expenseId: number= 0;
   constructor(private fb:FormBuilder) {
 
-  this.expenseForm = this.fb.group({
-    title: ["", Validators.required],
-    category:["", Validators.required],
-    amount: ["", [Validators.required, Validators.min(0)]],
-    date: ["", Validators.required],
-
-  });
+ this.expenseForm = this.fb.group({
+  title: ["", Validators.required],
+  category: ["", Validators.required],
+  amount: ["", [Validators.required, Validators.min(0)]],
+  date: [null, Validators.required]
+});
   this.route.params.subscribe(params => {
     const id = params['id'];
 
@@ -79,7 +79,7 @@ if (expense.length > 0) {
         title: expense.title,
         category: expense.category,
         amount: expense.amount,
-        date: expense.date
+         date: new Date(expense.date)
       })
     }
 
@@ -111,8 +111,26 @@ if (expense.length > 0) {
   }
 
 
-  
-
-
   }
 }
+
+
+
+export const MY_DATE_FORMATS = {
+  parse: {
+    dateInput: 'yyyy-MM-dd',
+  },
+  display: {
+    dateInput: 'yyyy-MM-dd',
+    monthYearLabel: 'MMM yyyy',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM yyyy',
+  },
+}
+
+
+
+
+
+
+

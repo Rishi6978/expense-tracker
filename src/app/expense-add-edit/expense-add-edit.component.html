@@ -36,12 +36,13 @@
                    <div class="form-row">
                 <mat-form-field>
                     <mat-label>Expense date</mat-label>
-                    <input matInput [matDatepicker]="picker" formControlName="date" required>
+                    <input matInput [matDatepicker]="picker" formControlName="date" required/>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                     <mat-error *ngIf="expenseForm.get('date')?.hasError('required')">date is required</mat-error>
-
+                    
                 </mat-form-field>
+                <p>Selected Date: {{ expenseForm.get('date')?.value | date: 'yyyy-MM-dd' }}</p>
             </div>
 </div>
         
