@@ -18,7 +18,8 @@ import { Expense } from '../model/expense.model';
   selector: 'app-expense-add-edit',
   imports: [CommonModule,ReactiveFormsModule,MatButtonModule,MatInputModule,MatSelectModule,MatDatepickerModule,MatCardModule,MatFormFieldModule, MatIconModule],
   templateUrl: './expense-add-edit.component.html',
-  styleUrl: './expense-add-edit.component.css'
+  styleUrl: './expense-add-edit.component.css',
+   providers: [DatePipe] 
 })
 export class ExpenseAddEditComponent {
   expenseService= inject(ExpenseService);
@@ -41,7 +42,8 @@ export class ExpenseAddEditComponent {
 
   isEditMode: boolean = false;
   expenseId: number= 0;
-  constructor(private fb:FormBuilder) {
+  
+  constructor(private fb:FormBuilder,private datePipe: DatePipe) {
 
  this.expenseForm = this.fb.group({
   title: ["", Validators.required],
@@ -85,8 +87,28 @@ if (expense.length > 0) {
 
   }
 
+  // Method to get formatted date before sending to API
+  getFormattedDate(): string | null {
+    const date = this.expenseForm.get('date')?.value;
+
+    // If date is not null, format it as yyyy-MM-dd
+    if (date) {
+      return this.datePipe.transform(date, 'yyyy-MM-dd');
+    }
+
+    // If date is null, return null
+    return null;
+  }
+
   onSubmit(){
     //alert(this.expenseForm);
+    const formattedDate = this.getFormattedDate();
+    const formValue = {
+      ...this.expenseForm.value,
+      date: formattedDate,
+      
+    };
+    this.expenseForm.get('date')?.setValue(formattedDate)
     console.log(this.expenseForm.value);
     if(this.expenseForm.valid){
     
