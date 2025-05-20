@@ -21,3 +21,23 @@
     background-color: #5f5f5f;
     color: #fff;
 }
+.selectrole{
+    background-color: #5f5f5f;
+    color: #fff;
+}
+
+
+
+
+
+.dropdown-align-right .mat-select-panel {
+  transform-origin: top right !important;
+  text-align: right;
+}
+
+/* Force panel position alignment to the right of the trigger */
+.cdk-overlay-pane.dropdown-align-right-panel {
+  left: auto !important;
+  right: 0 !important;
+}
+

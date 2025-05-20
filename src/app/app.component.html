@@ -1,23 +1,39 @@
 <mat-sidenav-container class="sidebar-container">
   <mat-sidenav #sidenav mode="side" opened='true' class="sidenav">
-
-<mat-nav-list>
-    <mat-list-item routerLink="/dashboard"> Dashboard </mat-list-item>
-    <mat-list-item routerLink="/add-expense"> Add an Expense </mat-list-item>
-    <mat-list-item routerLink="/list"> Expense List </mat-list-item>
-    <mat-list-item routerLink="/"> Contact </mat-list-item>
-  </mat-nav-list> 
-  
+    <mat-nav-list>
+      <mat-list-item routerLink="/dashboard"> Dashboard </mat-list-item>
+      <mat-list-item routerLink="/add-expense"> Add an Expense </mat-list-item>
+      <mat-list-item routerLink="/list"> Expense List </mat-list-item>
+      <mat-list-item routerLink="/"> Contact </mat-list-item>
+    </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content class="main-content">
     <mat-toolbar color="primary">
 
-        <button type="button" mat-icon-button (click)="sidenav.toggle()">
-            <mat-icon>menu</mat-icon>
-        </button>
-        <span class="app-title">Expense Tracker</span>
+      <button type="button" mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="app-title">Expense Tracker</span>
+
+ <!-- Dropdown aligned and styled to fit toolbar -->
+<div style="margin-left: auto; display: flex; align-items: center; height: 100%;  padding-top: 0; padding-bottom: 0; margin-right: 8px;">
+  <mat-form-field appearance="fill" color="primary" style="height: 99%; background-color: transparent; margin-right: 8px;">
+    <mat-label style="color: rgb(24, 23, 23);">Select User</mat-label>
+    <mat-select [(ngModel)]="selectedUser"
+                panelClass="custom-dropdown-panel"
+                (ngModelChange)="onUserChange($event)"
+                style="color: rgb(14, 0, 0);">
+      <mat-option *ngFor="let user of allUsers" [value]="user">
+        {{ user }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+
     </mat-toolbar>
+
     <router-outlet />
   </mat-sidenav-content>
 </mat-sidenav-container>

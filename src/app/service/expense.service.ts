@@ -11,9 +11,15 @@ export class ExpenseService {
 
   constructor(private http:HttpClient) { }
 
+  user = localStorage.getItem('user') || 'expenses';
+
+
+
   //get All expense
   getExpense() {
-    this.http.get<Expense[]>('https://military-stripe-floss.glitch.me/expenses')
+    
+  this.user = localStorage.getItem('user') || 'expenses';
+    this.http.get<Expense[]>('https://military-stripe-floss.glitch.me/'+this.user)
       .subscribe(expenses => this.expenseSignal.set(expenses));
   }
   get expenses() {
@@ -21,17 +27,17 @@ export class ExpenseService {
   }
   //Add expense
   addExpense(expense: Expense) {
-    this.http.post('https://military-stripe-floss.glitch.me/expenses', expense)
+    this.http.post('https://military-stripe-floss.glitch.me/'+this.user, expense)
       .subscribe(() => this.getExpense());
   }
   //Delete expense
   deleteExpense(id: number) {
-    this.http.delete(`https://military-stripe-floss.glitch.me/expenses/${id}`)
+    this.http.delete(`https://military-stripe-floss.glitch.me/${this.user}/${id}`)
       .subscribe(() => this.getExpense());
   }
   //Update expense
   updateExpense(id: string, updatedExpense: Expense) {
-    this.http.put(`https://military-stripe-floss.glitch.me/expenses/${id}`, updatedExpense)
+    this.http.put(`https://military-stripe-floss.glitch.me/${this.user}/${id}`, updatedExpense)
       .subscribe(() => this.getExpense());
   }
   //get expense by id
