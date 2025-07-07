@@ -19,7 +19,7 @@ export class ExpenseService {
   getExpense() {
     
   this.user = localStorage.getItem('user') || 'expenses';
-    this.http.get<Expense[]>('https://military-stripe-floss.glitch.me/'+this.user)
+    this.http.get<Expense[]>('https://rishi-api-server.onrender.com/'+this.user)
       .subscribe(expenses => this.expenseSignal.set(expenses));
   }
   get expenses() {
@@ -27,17 +27,17 @@ export class ExpenseService {
   }
   //Add expense
   addExpense(expense: Expense) {
-    this.http.post('https://military-stripe-floss.glitch.me/'+this.user, expense)
+    this.http.post('https://rishi-api-server.onrender.com/'+this.user, expense)
       .subscribe(() => this.getExpense());
   }
   //Delete expense
   deleteExpense(id: number) {
-    this.http.delete(`https://military-stripe-floss.glitch.me/${this.user}/${id}`)
+    this.http.delete(`https://rishi-api-server.onrender.com/${this.user}/${id}`)
       .subscribe(() => this.getExpense());
   }
   //Update expense
   updateExpense(id: string, updatedExpense: Expense) {
-    this.http.put(`https://military-stripe-floss.glitch.me/${this.user}/${id}`, updatedExpense)
+    this.http.put(`https://rishi-api-server.onrender.com/${this.user}/${id}`, updatedExpense)
       .subscribe(() => this.getExpense());
   }
   //get expense by id

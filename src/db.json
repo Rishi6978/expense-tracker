@@ -1,3 +1,57 @@
+
+[
+  {
+    "id": "1",
+      "title": "Food",
+      "category": "Food",
+      "amount": 50,
+      "date": "2023-10-01",
+      "child": [
+        {
+      "id": "1",
+      "title": "vegis",
+      "category": "Food",
+      "amount": 50,
+      "date": "2023-10-01"
+    },
+     {
+      "id": "2",
+      "title": "vegis",
+      "category": "Food",
+      "amount": 50,
+      "date": "2023-10-01"
+    }
+      ]
+      
+  },
+{
+    "id": "1",
+      "title": "Food",
+      "category": "Food",
+      "amount": 50,
+      "date": "2023-10-01",
+      "child": [
+        {
+      "id": "1",
+      "title": "vegis",
+      "category": "Food",
+      "amount": 50,
+      "date": "2023-10-01"
+    },
+     {
+      "id": "2",
+      "title": "vegis",
+      "category": "Food",
+      "amount": 50,
+      "date": "2023-10-01"
+    }
+      ]
+      
+  },
+
+
+
+
 {
   "expenses": [
     {
@@ -5,7 +59,8 @@
       "title": "Groceries",
       "category": "Food",
       "amount": 50,
-      "date": "2023-10-01"
+      "date": "2023-10-01",
+      "child":[]
     },
     {
       "title": "from net updated date",
@@ -75,4 +130,4 @@
       "date": "2025-05-21"
     }
   ]
-}
+}]
